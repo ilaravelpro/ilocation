@@ -22,14 +22,10 @@ class CreateILocationIpssTable extends Migration
     {
         Schema::create('i_location_ips', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('location_id')->unsigned()->nullable();
-            $table->foreign('location_id')->references('id')->on('i_locations')->onDelete('cascade');
-            $table->string('type')->nullable();
+            $table->bigInteger('city_id')->unsigned()->nullable();
+            $table->foreign('city_id')->references('id')->on('i_location_cities')->onDelete('cascade');
             $table->string('name')->nullable();
-            $table->string('ascii')->nullable();
-            $table->string('code', 100)->nullable();
-            $table->string('geoname')->nullable();
-            $table->boolean('master')->default(0);
+            $table->string('isp')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });

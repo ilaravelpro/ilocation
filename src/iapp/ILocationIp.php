@@ -16,7 +16,7 @@ class ILocation extends Model
     use \iLaravel\Core\iApp\Modals\Modal;
 
 
-    public static $s_prefix = 'ILL';
+    public static $s_prefix = 'ILLIP';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
 
