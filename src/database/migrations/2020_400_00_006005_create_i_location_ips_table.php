@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateILocationIpssTable extends Migration
+class CreateILocationIpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -24,7 +24,7 @@ class CreateILocationIpssTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('city_id')->unsigned()->nullable();
             $table->foreign('city_id')->references('id')->on('i_location_cities')->onDelete('cascade');
-            $table->string('name')->nullable();
+            $table->string('ip');
             $table->string('isp')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();

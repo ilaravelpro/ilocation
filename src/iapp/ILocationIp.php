@@ -11,7 +11,7 @@ namespace iLaravel\iLocation\iApp;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ILocation extends Model
+class ILocationIp extends Model
 {
     use \iLaravel\Core\iApp\Modals\Modal;
 
@@ -21,10 +21,6 @@ class ILocation extends Model
     public static $s_end = 1733270554752;
 
     protected $guarded = [];
-
-    protected $casts = [
-        'coordinate' => 'array',
-    ];
 
     protected static function boot()
     {
@@ -36,5 +32,9 @@ class ILocation extends Model
 
     public function city() {
         return $this->belongsTo(imodal('ILocationCity'), 'city_id');
+    }
+
+    public static function findByIP($ip) {
+        return static::where('ip', $ip)->first();
     }
 }
