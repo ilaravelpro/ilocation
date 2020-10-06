@@ -8,5 +8,5 @@
  */
 
 Route::namespace('v1')->prefix('v1')->middleware('auth:api')->group(function () {
-    Route::apiResource('locations', 'ILogController', ['as' => 'api','except' => ['store','update','destroy']]);
+    Route::apiResource('locations', 'ILocationController', ['as' => 'api','except' => ['store','update','destroy']]);
 });
