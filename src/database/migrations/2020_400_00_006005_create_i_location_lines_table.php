@@ -3,7 +3,7 @@
 
 /**
  * Author: Amir Hossein Jahani | iAmir.net
- * Last modified: 9/19/20, 8:34 PM
+ * Last modified: 9/19/20, 8:11 PM
  * Copyright (c) 2020. Powered by iamir.net
  */
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateILocationsTable extends Migration
+class CreateILocationLinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,17 +20,12 @@ class CreateILocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_locations', function (Blueprint $table) {
+        Schema::create('i_location_lines', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('model')->nullable();
-            $table->bigInteger('model_id')->nullable();
             $table->bigInteger('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('i_location_cities')->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->text('lines')->nullable();
-            $table->string('zip')->nullable();
-            $table->mediumText('coordinate')->nullable();
-            $table->text('details')->nullable();
+            $table->text('text')->nullable();
             $table->boolean('default')->default(0);
             $table->string('status')->default('active');
             $table->timestamps();
@@ -44,6 +39,6 @@ class CreateILocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_locations');
+        Schema::dropIfExists('i_location_lines');
     }
 }

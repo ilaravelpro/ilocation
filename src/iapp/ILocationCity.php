@@ -21,7 +21,7 @@ class ILocationCity extends Model
 
     protected $guarded = [];
 
-    protected $hidden = ['parent_id', 'country_id'];
+    protected $hidden = ['parent_id', 'country_id', 'lines'];
     public $with = ['cities', 'country'];
 
     public function country()
@@ -37,5 +37,10 @@ class ILocationCity extends Model
     public function cities()
     {
         return $this->hasMany(imodal('ILocationCity'), 'parent_id');
+    }
+
+    public function lines()
+    {
+        return $this->hasMany(imodal('ILocationLine'), 'city_id');
     }
 }
