@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateILocationCitiesTable extends Migration
+class CreateLocationCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,16 +20,19 @@ class CreateILocationCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_location_cities', function (Blueprint $table) {
+        Schema::create('location_cities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('country_id')->unsigned();
-            $table->foreign('country_id')->references('id')->on('i_location_countries')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('location_countries')->onDelete('cascade');
             $table->bigInteger('parent_id')->unsigned();
-            $table->foreign('parent_id')->references('id')->on('i_location_cities')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('location_cities')->onDelete('cascade');
             $table->string('type')->nullable();
             $table->string('name')->nullable();
             $table->string('ascii')->nullable();
             $table->string('code', 100)->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->longText('coordinates')->nullable();
             $table->string('geoname')->nullable();
             $table->boolean('master')->default(0);
             $table->string('status')->default('active');
@@ -44,6 +47,6 @@ class CreateILocationCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_location_cities');
+        Schema::dropIfExists('location_cities');
     }
 }

@@ -9,15 +9,16 @@
 
 namespace iLaravel\iLocation\iApp;
 
-use Illuminate\Database\Eloquent\Model;
 
-class ILocationCountry extends Model
+class LocationCountry extends \iLaravel\Core\iApp\Model
 {
-    use \iLaravel\Core\iApp\Modals\Modal;
-
-    public static $s_prefix = 'ILLC';
+    public static $s_prefix = 'ILC';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
+
+    protected $casts = [
+        'coordinates' => 'array',
+    ];
 
     protected $guarded = [];
 
@@ -25,6 +26,6 @@ class ILocationCountry extends Model
 
     public function cities()
     {
-        return $this->hasMany(imodal('ILocationCity'), 'country_id')->where('master', 1);
+        return $this->hasMany(imodal('LocationCity'), 'country_id')->where('master', 1);
     }
 }

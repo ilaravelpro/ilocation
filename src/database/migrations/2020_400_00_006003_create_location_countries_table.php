@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateILocationCountriesTable extends Migration
+class CreateLocationCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,10 +20,10 @@ class CreateILocationCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_location_countries', function (Blueprint $table) {
+        Schema::create('location_countries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('continent_id')->unsigned();
-            $table->foreign('continent_id')->references('id')->on('i_location_continents')->onDelete('cascade');
+            $table->foreign('continent_id')->references('id')->on('location_continents')->onDelete('cascade');
             $table->string('name');
             $table->string('continent');
             $table->string('capital');
@@ -43,6 +43,7 @@ class CreateILocationCountriesTable extends Migration
             $table->string('fips');
             $table->string('fips_equivalent');
             $table->mediumText('types');
+            $table->longText('coordinates')->nullable();
             $table->string('geoname')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
@@ -56,6 +57,6 @@ class CreateILocationCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_location_countries');
+        Schema::dropIfExists('location_countries');
     }
 }

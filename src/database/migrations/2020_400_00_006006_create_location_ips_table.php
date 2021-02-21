@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateILocationLinesTable extends Migration
+class CreateLocationIpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,13 +20,12 @@ class CreateILocationLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('i_location_lines', function (Blueprint $table) {
+        Schema::create('location_ips', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('i_location_cities')->onDelete('cascade');
-            $table->string('title')->nullable();
-            $table->text('text')->nullable();
-            $table->boolean('default')->default(0);
+            $table->bigInteger('city_id')->unsigned()->nullable();
+            $table->foreign('city_id')->references('id')->on('location_cities')->onDelete('cascade');
+            $table->string('ip');
+            $table->string('isp')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });
@@ -39,6 +38,6 @@ class CreateILocationLinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_location_lines');
+        Schema::dropIfExists('location_ips');
     }
 }

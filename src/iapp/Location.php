@@ -9,14 +9,10 @@
 
 namespace iLaravel\iLocation\iApp;
 
-use Illuminate\Database\Eloquent\Model;
 
-class ILocationIp extends Model
+class Location extends \iLaravel\Core\iApp\Model
 {
-    use \iLaravel\Core\iApp\Modals\Modal;
-
-
-    public static $s_prefix = 'ILLIP';
+    public static $s_prefix = 'IL';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
 
@@ -30,11 +26,12 @@ class ILocationIp extends Model
         });
     }
 
-    public function city() {
-        return $this->belongsTo(imodal('ILocationCity'), 'city_id');
+    public function creator()
+    {
+        return $this->belongsTo(imodal('User'));
     }
 
-    public static function findByIP($ip) {
-        return static::where('ip', $ip)->first();
+    public function city() {
+        return $this->belongsTo(imodal('LocationCity'), 'city_id');
     }
 }
