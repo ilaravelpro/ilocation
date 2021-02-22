@@ -12,7 +12,7 @@ namespace iLaravel\iLocation\iApp;
 
 class LocationCountry extends \iLaravel\Core\iApp\Model
 {
-    public static $s_prefix = 'ILC';
+    public static $s_prefix = 'ILCC';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
 
