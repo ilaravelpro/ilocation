@@ -20,7 +20,6 @@ class LocationController extends Controller
 
     use Index,
         Show,
-        iLocation\Rules,
         iLocation\RequestData,
         iLocation\Filters;
 }

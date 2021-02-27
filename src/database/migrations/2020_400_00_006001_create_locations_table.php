@@ -27,7 +27,7 @@ class CreateLocationsTable extends Migration
             $table->bigInteger('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('location_cities')->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->text('line')->nullable();
+            $table->text('lines')->nullable();
             $table->string('zip')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();

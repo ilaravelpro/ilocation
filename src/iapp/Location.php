@@ -9,6 +9,7 @@
 
 namespace iLaravel\iLocation\iApp;
 
+use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
 class Location extends \iLaravel\Core\iApp\Model
 {
@@ -33,5 +34,26 @@ class Location extends \iLaravel\Core\iApp\Model
 
     public function city() {
         return $this->belongsTo(imodal('LocationCity'), 'city_id');
+    }
+
+    public function rules(Request $request, $action, $parent = null)
+    {
+        $rules = [];
+        switch ($action) {
+            case 'store':
+                $rules = ["creator_id" => "required|exists:users,id"];
+            case 'update':
+                $rules = array_merge($rules, [
+                    'title' => "required|string",
+                    'lines' => "required|string",
+                    'zip' => "required|string",
+                    'longitude' => "required|longitude",
+                    'latitude' => "required|latitude",
+                    'details' => "required|string",
+                    'default' => "nullable|boolean",
+                ]);
+                break;
+        }
+        return $rules;
     }
 }
