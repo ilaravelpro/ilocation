@@ -22,8 +22,6 @@ class CreateLocationCountriesTable extends Migration
     {
         Schema::create('location_countries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('continent_id')->unsigned();
-            $table->foreign('continent_id')->references('id')->on('location_continents')->onDelete('cascade');
             $table->string('name');
             $table->string('continent');
             $table->string('capital');

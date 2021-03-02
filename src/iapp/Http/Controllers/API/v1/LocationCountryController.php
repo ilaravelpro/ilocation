@@ -15,7 +15,7 @@ use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Index;
 use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Show;
 
 
-class LocationController extends Controller
+class LocationCountryController extends Controller
 {
     public $order_list = ['id', 'title'];
 
