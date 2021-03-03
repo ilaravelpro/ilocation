@@ -10,7 +10,13 @@
 return [
     'routes' => [
         'api' => [
-            'status' => true
+            'status' => true,
+            'locations' => ['status' => true],
+            'continents' => ['status' => true],
+            'countries' => ['status' => true],
+            'cities' => ['status' => true],
+            'lines' => ['status' => true],
+            'timezones' => ['status' => true],
         ]
     ],
     'database' => [

@@ -9,6 +9,7 @@
 
 namespace iLaravel\iLocation\iApp;
 
+use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
 class LocationIp extends \iLaravel\Core\iApp\Model
 {
@@ -32,5 +33,22 @@ class LocationIp extends \iLaravel\Core\iApp\Model
 
     public static function findByIP($ip) {
         return static::where('ip', $ip)->first();
+    }
+
+    public function rules(Request $request, $action, $parent = null)
+    {
+        $rules = [];
+        switch ($action) {
+            case 'store':
+            case 'update':
+                $rules = array_merge($rules, [
+                    'ip' => "required|ip" . ($request->type == 'ipv6' ? ':6': ''),
+                    'isp' => "nullable|string",
+                    'type' => 'required|' . (imodal('Type') ? 'exists:types,name' : 'string'),
+                    'status' => 'nullable|in:' . join(iconfig('status.location_ips', iconfig('status.global')), ','),
+                ]);
+                break;
+        }
+        return $rules;
     }
 }

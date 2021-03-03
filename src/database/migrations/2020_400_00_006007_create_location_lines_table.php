@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationCitiesTable extends Migration
+class CreateLocationLinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,23 +20,19 @@ class CreateLocationCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('location_cities', function (Blueprint $table) {
+        Schema::create('location_lines', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->bigInteger('parent_id')->unsigned();
-            $table->foreign('parent_id')->references('id')->on('location_cities')->onDelete('cascade');
+            $table->bigInteger('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('i_location_cities')->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->string('name')->nullable();
-            $table->string('country')->nullable();
-            $table->string('prefix')->nullable();
-            $table->string('code', 100)->nullable();
-            $table->string('type')->nullable();
+            $table->text('text')->nullable();
+            $table->text('description')->nullable();
+            $table->string('zip')->nullable();
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
-            $table->longText('coordinates')->nullable();
-            $table->string('geoname')->nullable();
-            $table->boolean('master')->default(0);
+            $table->boolean('default')->default(0);
             $table->string('status')->default('active');
             $table->timestamps();
         });
@@ -49,6 +45,7 @@ class CreateLocationCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_cities');
+        Schema::dropIfExists('location_lines');
     }
 }
+

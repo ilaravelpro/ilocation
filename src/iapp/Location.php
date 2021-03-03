@@ -13,9 +13,12 @@ use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
 class Location extends \iLaravel\Core\iApp\Model
 {
+    use \iLaravel\Core\iApp\Methods\Metable;
     public static $s_prefix = 'IL';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
+
+    protected $metaTable = 'location_meta';
 
     protected $guarded = [];
 
@@ -45,12 +48,9 @@ class Location extends \iLaravel\Core\iApp\Model
             case 'update':
                 $rules = array_merge($rules, [
                     'title' => "required|string",
-                    'lines' => "required|string",
-                    'zip' => "required|string",
-                    'longitude' => "required|longitude",
-                    'latitude' => "required|latitude",
-                    'details' => "required|string",
-                    'default' => "nullable|boolean",
+                    'summery' => "required|string",
+                    'content' => "required|string",
+                    'status' => 'nullable|in:' . join(iconfig('status.locations', iconfig('status.global')), ','),
                 ]);
                 break;
         }

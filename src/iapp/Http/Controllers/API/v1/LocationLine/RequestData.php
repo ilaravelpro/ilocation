@@ -7,7 +7,7 @@
  * Copyright (c) 2020. Powered by iamir.net
  */
 
-namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\iLocation;
+namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\LocationLine;
 
 use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 

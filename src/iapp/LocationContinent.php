@@ -9,6 +9,7 @@
 
 namespace iLaravel\iLocation\iApp;
 
+use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
 class LocationContinent extends \iLaravel\Core\iApp\Model
 {
@@ -19,4 +20,24 @@ class LocationContinent extends \iLaravel\Core\iApp\Model
     protected $casts = [
         'coordinates' => 'array',
     ];
+
+    public function rules(Request $request, $action, $parent = null)
+    {
+        $rules = [];
+        switch ($action) {
+            case 'store':
+            case 'update':
+                $rules = array_merge($rules, [
+                    'title' => "required|string",
+                    'name' => "required|string",
+                    'code' => "nullable|regex:/^[A-Za-z]{1,3}*$/",
+                    'coordinates.*.lon' => "nullable|longitude",
+                    'coordinates.*.lat' => "nullable|latitude",
+                    'geoname' => "nullable|string",
+                    'status' => 'nullable|in:' . join(iconfig('status.location_continents', iconfig('status.global')), ','),
+                ]);
+                break;
+        }
+        return $rules;
+    }
 }

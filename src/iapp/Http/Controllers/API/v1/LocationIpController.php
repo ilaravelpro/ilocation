@@ -18,9 +18,9 @@ use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Update;
 use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Destroy;
 
 
-class LocationCountryController extends Controller
+class LocationIpController extends Controller
 {
-    public $order_list = ['id', 'continent', 'capital', 'area', 'population', 'tld', 'phone', 'languages', 'neighbors', 'currency_code', 'currency_name', 'postal_code_format', 'postal_code_regex', 'iso_alpha2', 'iso_alpha3', 'iso_numeric', 'fips', 'fips_equivalent', 'geoname', 'status'];
+    public $order_list = ['id', 'ip', 'isp'];
 
     use Index,
         Data,
@@ -28,5 +28,6 @@ class LocationCountryController extends Controller
         Store,
         Update,
         Destroy,
-        LocationCountry\Filters;
+        Location\RequestData,
+        Location\Filters;
 }

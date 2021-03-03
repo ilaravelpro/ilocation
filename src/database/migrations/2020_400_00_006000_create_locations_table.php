@@ -22,17 +22,14 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('creator_id')->nullable();
-            $table->foreign('creator_id')->references('id')->on('creator_id');
-            $table->bigInteger('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('location_cities')->onDelete('cascade');
+            $table->unsignedBigInteger('creator_id')->nullable();
+            $table->foreign('creator_id')->references('id')->on('users');
+            $table->bigInteger('line_id')->unsigned();
+            $table->foreign('line_id')->references('id')->on('location_lines')->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->text('lines')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('longitude')->nullable();
-            $table->string('latitude')->nullable();
-            $table->text('details')->nullable();
-            $table->boolean('default')->default(0);
+            $table->text('summery')->nullable();
+            $table->longText('content')->nullable();
+            $table->string('geoname')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });

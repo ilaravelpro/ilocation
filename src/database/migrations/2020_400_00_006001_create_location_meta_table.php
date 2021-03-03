@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationContinentsTable extends Migration
+class CreateLocationMetaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,13 +20,13 @@ class CreateLocationContinentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('location_continents', function (Blueprint $table) {
+        Schema::create('location_meta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 4);
-            $table->string('name', 20);
-            $table->string('geoname')->nullable();
-            $table->longText('coordinates')->nullable();
-            $table->string('status')->default('active');
+            $table->integer('location_id')->nullable()->unsigned();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->string('type')->default('null');
+            $table->string('key')->index();
+            $table->longText('value')->nullable();
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ class CreateLocationContinentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_continents');
+        Schema::dropIfExists('location_meta');
     }
 }

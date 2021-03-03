@@ -3,7 +3,7 @@
 
 /**
  * Author: Amir Hossein Jahani | iAmir.net
- * Last modified: 9/19/20, 8:11 PM
+ * Last modified: 9/19/20, 8:19 PM
  * Copyright (c) 2020. Powered by iamir.net
  */
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationIpsTable extends Migration
+class CreateLocationContinentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,14 +20,15 @@ class CreateLocationIpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('location_ips', function (Blueprint $table) {
+        Schema::create('location_continents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->bigInteger('city_id')->unsigned()->nullable();
-            $table->foreign('city_id')->references('id')->on('location_cities')->onDelete('cascade');
-            $table->string('ip');
-            $table->string('isp')->nullable();
+            $table->string('title', 20);
+            $table->string('name', 20);
+            $table->string('code', 4);
+            $table->string('geoname')->nullable();
+            $table->longText('coordinates')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });
@@ -40,6 +41,6 @@ class CreateLocationIpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_ips');
+        Schema::dropIfExists('location_continents');
     }
 }

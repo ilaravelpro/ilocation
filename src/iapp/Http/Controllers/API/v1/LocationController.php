@@ -13,15 +13,21 @@ use iLaravel\Core\iApp\Http\Controllers\API\Controller;
 use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Data;
 use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Index;
 use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Show;
+use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Store;
+use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Update;
+use iLaravel\Core\iApp\Http\Controllers\API\Methods\Controller\Destroy;
 
 
 class LocationController extends Controller
 {
-    public $order_list = ['id', 'title'];
+    public $order_list = ['id', 'title', 'summery', 'content', 'geoname', 'status'];
 
     use Index,
-        Show,
         Data,
-        iLocation\RequestData,
-        iLocation\Filters;
+        Show,
+        Store,
+        Update,
+        Destroy,
+        Location\RequestData,
+        Location\Filters;
 }

@@ -8,7 +8,7 @@
  * Copyright (c) 2020. Powered by iamir.net
  */
 
-namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\iLocation;
+namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\Location;
 
 
 trait Filters
@@ -24,6 +24,21 @@ trait Filters
             [
                 'name' => 'title',
                 'title' => _t('title'),
+                'type' => 'text'
+            ],
+            [
+                'name' => 'summery',
+                'title' => _t('summery'),
+                'type' => 'text'
+            ],
+            [
+                'name' => 'content',
+                'title' => _t('content'),
+                'type' => 'text'
+            ],
+            [
+                'name' => 'geoname',
+                'title' => _t('geoname'),
                 'type' => 'text'
             ],
         ];
