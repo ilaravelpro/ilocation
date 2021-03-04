@@ -28,6 +28,7 @@ class CreateLocationIpsTable extends Migration
             $table->foreign('city_id')->references('id')->on('location_cities')->onDelete('cascade');
             $table->string('ip');
             $table->string('isp')->nullable();
+            $table->integer('version')->default(4);
             $table->string('status')->default('active');
             $table->timestamps();
         });

@@ -44,10 +44,10 @@ class Location extends \iLaravel\Core\iApp\Model
         $rules = [];
         switch ($action) {
             case 'store':
-                $rules = ["creator_id" => "required|exists:users,id"];
             case 'update':
                 $rules = array_merge($rules, [
                     'title' => "required|string",
+                    'slug' => "required|slug",
                     'summery' => "required|string",
                     'content' => "required|string",
                     'status' => 'nullable|in:' . join(iconfig('status.locations', iconfig('status.global')), ','),

@@ -13,20 +13,11 @@ use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
 class LocationLine extends \iLaravel\Core\iApp\Model
 {
+    use useLocationCity;
     public static $s_prefix = 'ILL';
     public static $s_start = 1155;
     public static $s_end = 18446744073709551615;
     protected $guarded = [];
-
-    protected $hidden = ['city_id'];
-
-    public $with = ['city'];
-
-    public function city()
-    {
-        return $this->belongsTo(imodal('LocationCity'), 'city_id');
-    }
-
     public function rules(Request $request, $action, $parent = null)
     {
         $rules = [];
@@ -34,6 +25,7 @@ class LocationLine extends \iLaravel\Core\iApp\Model
             case 'store':
             case 'update':
                 $rules = array_merge($rules, [
+                    'city_id' => "nullable|exists:location_cities,id",
                     'title' => "required|string",
                     'text' => "required|string",
                     'zip' => "required|string",

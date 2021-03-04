@@ -24,11 +24,11 @@ class CreateTimeZonesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->string('title', 20);
+            $table->string('title');
             $table->string('country', 20);
-            $table->string('gmt_offset', 4);
-            $table->string('dst_offset', 4);
-            $table->string('raw_offset', 4);
+            $table->string('gmt_offset', 6);
+            $table->string('dst_offset', 6);
+            $table->string('raw_offset', 6);
             $table->string('status')->default('active');
             $table->timestamps();
         });

@@ -28,6 +28,6 @@ class TimezoneController extends Controller
         Store,
         Update,
         Destroy,
-        Location\RequestData,
-        Location\Filters;
+        Timezone\RequestData,
+        Timezone\Filters;
 }

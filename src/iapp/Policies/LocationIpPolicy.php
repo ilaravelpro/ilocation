@@ -14,5 +14,5 @@ use iLaravel\Core\Vendor\iRole\iRolePolicy;
 class LocationIpPolicy extends iRolePolicy
 {
     public $prefix = 'location_ips';
-    public $model = 'LocationIps';
+    public $model = 'LocationIp';
 }

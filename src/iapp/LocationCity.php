@@ -21,12 +21,18 @@ class LocationCity extends \iLaravel\Core\iApp\Model
     protected $hidden = ['parent_id', 'country_id', 'lines'];
 
     protected $casts = [
+        'master' => 'boolean',
         'coordinates' => 'array',
     ];
 
     public function country()
     {
         return $this->belongsTo(imodal('LocationCountry'), 'country', 'iso_alpha2');
+    }
+
+    public function timezone()
+    {
+        return $this->belongsTo(imodal('Timezone'), 'timezone_id');
     }
 
     public function parent()
@@ -52,12 +58,13 @@ class LocationCity extends \iLaravel\Core\iApp\Model
             case 'update':
                 $rules = array_merge($rules, [
                     'parent_id' => "nullable|exists:location_cities,id",
+                    'timezone_id' => "nullable|exists:timezones,id",
                     'country' => "nullable|exists:location_countries,iso_alpha2",
                     'title' => "required|string",
-                    'name' => "required|string",
-                    'prefix' => "required|string",
-                    'code' => "required|string",
-                    'master' => "required|boolean",
+                    'name' => "nullable|string",
+                    'prefix' => "nullable|string",
+                    'code' => "nullable|string",
+                    'master' => "nullable|boolean",
                     'type' => 'nullable|' . (imodal('Type') ? 'exists:types,name' : 'string'),
                     'longitude' => "nullable|longitude",
                     'latitude' => "nullable|latitude",
@@ -69,5 +76,10 @@ class LocationCity extends \iLaravel\Core\iApp\Model
                 break;
         }
         return $rules;
+    }
+
+    public static function findByName($name)
+    {
+        return static::where('name', $name)->first();
     }
 }

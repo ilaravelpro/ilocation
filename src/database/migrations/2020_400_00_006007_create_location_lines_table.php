@@ -24,7 +24,7 @@ class CreateLocationLinesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->bigInteger('city_id')->unsigned();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('i_location_cities')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->text('text')->nullable();

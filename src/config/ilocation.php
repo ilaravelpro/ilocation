@@ -16,6 +16,7 @@ return [
             'countries' => ['status' => true],
             'cities' => ['status' => true],
             'lines' => ['status' => true],
+            'ips' => ['status' => true],
             'timezones' => ['status' => true],
         ]
     ],

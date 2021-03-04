@@ -28,5 +28,5 @@ class LocationContinentController extends Controller
         Store,
         Update,
         Destroy,
-        LocationCountry\Filters;
+        LocationContinent\Filters;
 }

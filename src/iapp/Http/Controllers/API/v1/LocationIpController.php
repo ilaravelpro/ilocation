@@ -28,6 +28,6 @@ class LocationIpController extends Controller
         Store,
         Update,
         Destroy,
-        Location\RequestData,
-        Location\Filters;
+        LocationLine\RequestData,
+        LocationIp\Filters;
 }

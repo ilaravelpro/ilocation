@@ -11,7 +11,7 @@ namespace iLaravel\iLocation\iApp;
 
 use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
-class TimeZone extends \iLaravel\Core\iApp\Model
+class Timezone extends \iLaravel\Core\iApp\Model
 {
     public static $s_prefix = 'ILT';
     public static $s_start = 1155;

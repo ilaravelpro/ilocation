@@ -29,8 +29,8 @@ class LocationContinent extends \iLaravel\Core\iApp\Model
             case 'update':
                 $rules = array_merge($rules, [
                     'title' => "required|string",
-                    'name' => "required|string",
-                    'code' => "nullable|regex:/^[A-Za-z]{1,3}*$/",
+                    'name' => "nullable|string",
+                    'code' => "nullable|regex:/^[A-Za-z]{1,3}$/",
                     'coordinates.*.lon' => "nullable|longitude",
                     'coordinates.*.lat' => "nullable|latitude",
                     'geoname' => "nullable|string",
@@ -39,5 +39,10 @@ class LocationContinent extends \iLaravel\Core\iApp\Model
                 break;
         }
         return $rules;
+    }
+
+    public static function findByCode($code)
+    {
+        return static::where('code', $code)->first();
     }
 }

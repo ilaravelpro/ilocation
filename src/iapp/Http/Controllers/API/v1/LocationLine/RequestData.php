@@ -15,6 +15,12 @@ trait RequestData
 {
     public function requestData(Request $request, $action, &$data)
     {
-
+        if (in_array($action, ['store', 'update']) && isset($data['cities']) && count($data['cities'])) {
+            $cities = $data['cities'];
+            $last_city = end($cities);
+            $data['city_id'] = is_array($last_city) && isset($last_city['value']) ? $last_city['value'] : $last_city;
+            $cityModel = imodal('LocationCity');
+            $data['city_id'] = $cityModel::id($data['city_id']);
+        }
     }
 }

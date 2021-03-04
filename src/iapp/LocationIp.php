@@ -13,6 +13,7 @@ use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
 class LocationIp extends \iLaravel\Core\iApp\Model
 {
+    use useLocationCity;
     public static $s_prefix = 'ILIP';
     public static $s_start = 1155;
     public static $s_end = 1733270554752;
@@ -27,10 +28,6 @@ class LocationIp extends \iLaravel\Core\iApp\Model
         });
     }
 
-    public function city() {
-        return $this->belongsTo(imodal('LocationCity'), 'city_id');
-    }
-
     public static function findByIP($ip) {
         return static::where('ip', $ip)->first();
     }
@@ -42,9 +39,10 @@ class LocationIp extends \iLaravel\Core\iApp\Model
             case 'store':
             case 'update':
                 $rules = array_merge($rules, [
+                    'city_id' => "nullable|exists:location_cities,id",
                     'ip' => "required|ip" . ($request->type == 'ipv6' ? ':6': ''),
                     'isp' => "nullable|string",
-                    'type' => 'required|' . (imodal('Type') ? 'exists:types,name' : 'string'),
+                    'version' => 'required|in:4,6',
                     'status' => 'nullable|in:' . join(iconfig('status.location_ips', iconfig('status.global')), ','),
                 ]);
                 break;

@@ -8,7 +8,7 @@
  * Copyright (c) 2020. Powered by iamir.net
  */
 
-namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\LocationCity;
+namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\LocationContinent;
 
 
 trait Filters
@@ -32,43 +32,13 @@ trait Filters
                 'type' => 'text'
             ],
             [
-                'name' => 'prefix',
-                'title' => _t('prefix'),
-                'type' => 'text'
-            ],
-            [
                 'name' => 'code',
                 'title' => _t('code'),
                 'type' => 'text'
             ],
             [
-                'name' => 'country',
-                'title' => _t('country'),
-                'type' => 'text'
-            ],
-            [
-                'name' => 'type',
-                'title' => _t('type'),
-                'type' => 'text'
-            ],
-            [
-                'name' => 'longitude',
-                'title' => _t('longitude'),
-                'type' => 'text'
-            ],
-            [
-                'name' => 'latitude',
-                'title' => _t('latitude'),
-                'type' => 'text'
-            ],
-            [
                 'name' => 'geoname',
                 'title' => _t('geoname'),
-                'type' => 'text'
-            ],
-            [
-                'name' => 'parent',
-                'title' => _t('parent'),
                 'type' => 'text'
             ],
         ];

@@ -28,5 +28,6 @@ class LocationCountryController extends Controller
         Store,
         Update,
         Destroy,
-        LocationCountry\Filters;
+        LocationCountry\Filters,
+        LocationCountry\RequestData;
 }

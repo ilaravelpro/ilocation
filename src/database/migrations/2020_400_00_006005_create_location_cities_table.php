@@ -24,8 +24,10 @@ class CreateLocationCitiesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
-            $table->bigInteger('parent_id')->unsigned();
+            $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->foreign('parent_id')->references('id')->on('location_cities')->onDelete('cascade');
+            $table->bigInteger('timezone_id')->unsigned()->nullable();
+            $table->foreign('timezone_id')->references('id')->on('timezones')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->string('name')->nullable();
             $table->string('country')->nullable();
