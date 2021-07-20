@@ -3,8 +3,8 @@
     "description": "iLaravel iLocation",
     "keywords": [
         "laravel",
-        "log",
-        "reports"
+        "locations",
+        "countries"
     ],
     "homepage": "https://ilaravel.iamir.net/packages/ilocation",
     "license": "MIT",
@@ -17,8 +17,10 @@
         }
     ],
     "autoload": {
+        "classmap": [
+            "src"
+        ],
         "psr-4": {
-            "App\\": "src/app/",
             "iLaravel\\iLocation\\": "src/"
         },
         "files": [
