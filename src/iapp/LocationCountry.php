@@ -58,7 +58,7 @@ class LocationCountry extends \iLaravel\Core\iApp\Model
                     'coordinates.*.lon' => "nullable|longitude",
                     'coordinates.*.lat' => "nullable|latitude",
                     'geoname' => "nullable|string",
-                    'status' => 'nullable|in:' . join(iconfig('status.location_countries', iconfig('status.global')), ','),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.location_countries', iconfig('status.global'))),
                 ]);
                 break;
         }

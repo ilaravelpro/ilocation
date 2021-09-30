@@ -50,7 +50,7 @@ class Location extends \iLaravel\Core\iApp\Model
                     'slug' => "required|slug",
                     'summery' => "required|string",
                     'content' => "required|string",
-                    'status' => 'nullable|in:' . join(iconfig('status.locations', iconfig('status.global')), ','),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.locations', iconfig('status.global'))),
                 ]);
                 break;
         }

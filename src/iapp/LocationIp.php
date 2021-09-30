@@ -43,7 +43,7 @@ class LocationIp extends \iLaravel\Core\iApp\Model
                     'ip' => "required|ip" . ($request->type == 'ipv6' ? ':6': ''),
                     'isp' => "nullable|string",
                     'version' => 'required|in:4,6',
-                    'status' => 'nullable|in:' . join(iconfig('status.location_ips', iconfig('status.global')), ','),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.location_ips', iconfig('status.global'))),
                 ]);
                 break;
         }

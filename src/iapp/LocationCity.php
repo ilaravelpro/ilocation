@@ -71,7 +71,7 @@ class LocationCity extends \iLaravel\Core\iApp\Model
                     'coordinates.*.lon' => "nullable|longitude",
                     'coordinates.*.lat' => "nullable|latitude",
                     'geoname' => "nullable|string",
-                    'status' => 'nullable|in:' . join(iconfig('status.location_cities', iconfig('status.global')), ','),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.location_cities', iconfig('status.global'))),
                 ]);
                 break;
         }

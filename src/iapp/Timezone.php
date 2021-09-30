@@ -34,7 +34,7 @@ class Timezone extends \iLaravel\Core\iApp\Model
                     'gmt_offset' => "required|double:0,3",
                     'dst_offset' => "required|double:0,3",
                     'raw_offset' => "required|double:0,3",
-                    'status' => 'nullable|in:' . join(iconfig('status.timezones', iconfig('status.global')), ','),
+                    'status' => 'nullable|in:' . join( ',', iconfig('status.timezones', iconfig('status.global'))),
                 ]);
                 break;
         }

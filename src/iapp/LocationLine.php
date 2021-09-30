@@ -33,7 +33,7 @@ class LocationLine extends \iLaravel\Core\iApp\Model
                     'latitude' => "required|latitude",
                     'description' => "required|string",
                     'default' => "nullable|boolean",
-                    'status' => 'nullable|in:' . join(iconfig('status.location_lines', iconfig('status.global')), ','),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.location_lines', iconfig('status.global'))),
                 ]);
                 break;
         }
