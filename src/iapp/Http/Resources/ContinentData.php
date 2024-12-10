@@ -11,12 +11,12 @@ namespace iLaravel\iLocation\iApp\Http\Resources;
 
 use iLaravel\Core\iApp\Http\Resources\ResourceData;
 
-class LocationCityData  extends ResourceData
+class ContinentData extends ResourceData
 {
     public function toArray($request)
     {
         $data = parent::toArray($request);
-        $data['cities'] = $this->cities->count();
+        $data['value'] = $this->code ? : strtolower($this->title);
         return $data;
     }
 }

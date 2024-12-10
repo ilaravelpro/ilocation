@@ -11,12 +11,12 @@ namespace iLaravel\iLocation\iApp\Http\Resources;
 
 use iLaravel\Core\iApp\Http\Resources\Resource;
 
-class LocationCountry extends Resource
+class Country extends Resource
 {
     public function toArray($request)
     {
         $data = parent::toArray($request);
-        $continentModel = imodal('LocationContinent');
+        $continentModel = imodal('Continent');
         $continent = $continentModel::findByCode($this->continent);
         $data['continent'] = $continent? [
             'text' => $continent->title,

@@ -1,18 +1,21 @@
 <?php
 
 
-
 /**
  * Author: Amir Hossein Jahani | iAmir.net
- * Last modified: 9/19/20, 8:18 PM
+ * Last modified: 9/19/20, 8:32 PM
  * Copyright (c) 2020. Powered by iamir.net
  */
 
-namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\LocationLine;
+namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1;
+
+use iLaravel\Core\iApp\Http\Controllers\API\ApiController;
 
 
-trait Filters
+class ContinentController extends ApiController
 {
+    public $order_list = ['id', 'code', 'name', 'geoname'];
+
     public function filters($request, $model, $parent = null, $operators = [])
     {
         $filters = [
@@ -27,30 +30,20 @@ trait Filters
                 'type' => 'text'
             ],
             [
-                'name' => 'text',
-                'title' => _t('text'),
+                'name' => 'name',
+                'title' => _t('name'),
                 'type' => 'text'
             ],
             [
-                'name' => 'description',
-                'title' => _t('description'),
+                'name' => 'code',
+                'title' => _t('code'),
                 'type' => 'text'
             ],
             [
-                'name' => 'zip',
-                'title' => _t('zip'),
+                'name' => 'geoname',
+                'title' => _t('geoname'),
                 'type' => 'text'
             ],
-            [
-                'name' => 'longitude',
-                'title' => _t('longitude'),
-                'type' => 'text'
-            ],
-            [
-                'name' => 'latitude',
-                'title' => _t('latitude'),
-                'type' => 'text'
-            ]
         ];
         return [$filters, [], $operators];
     }

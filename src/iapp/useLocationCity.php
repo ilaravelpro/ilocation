@@ -12,17 +12,17 @@ trait useLocationCity
 {
     public function getCountryAttribute()
     {
-        $countryModel = imodal('LocationCountry');
+        $countryModel = imodal('Country');
         return $this->city->country ? $countryModel::findByISOAlpha2($this->city->country) : null;
     }
 
     public function city() {
-        return $this->belongsTo(imodal('LocationCity'), 'city_id');
+        return $this->belongsTo(imodal('City'), 'city_id');
     }
 
     public function cities() {
         $cities = collect();
-        if ($this->city && $this->city->parent){
+        if ($this->city){
             $cities->push($this->city);
             $parent = $this->city->parent;
             while ($parent) {
@@ -31,6 +31,7 @@ trait useLocationCity
             }
             $cities = $cities->sortKeysDesc();
         }
+        $cities->model = $this->city()->getRelated();
         return $cities;
     }
 }

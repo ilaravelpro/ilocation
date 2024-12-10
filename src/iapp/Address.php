@@ -11,13 +11,18 @@ namespace iLaravel\iLocation\iApp;
 
 use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
-class LocationLine extends \iLaravel\Core\iApp\Model
+class Address extends \iLaravel\Core\iApp\Model
 {
     use useLocationCity;
     public static $s_prefix = 'ILL';
     public static $s_start = 1155;
     public static $s_end = 18446744073709551615;
     protected $guarded = [];
+
+    public function creator()
+    {
+        return $this->belongsTo(imodal('User'), 'creator_id');
+    }
     public function rules(Request $request, $action, $parent = null)
     {
         $rules = [];
@@ -25,18 +30,27 @@ class LocationLine extends \iLaravel\Core\iApp\Model
             case 'store':
             case 'update':
                 $rules = array_merge($rules, [
-                    'city_id' => "nullable|exists:location_cities,id",
+                    'city_id' => "nullable|exists:cities,id",
                     'title' => "required|string",
                     'text' => "required|string",
-                    'zip' => "required|string",
+                    'postcode' => "required|string",
                     'longitude' => "required|longitude",
                     'latitude' => "required|latitude",
                     'description' => "required|string",
-                    'default' => "nullable|boolean",
-                    'status' => 'nullable|in:' . join(',', iconfig('status.location_lines', iconfig('status.global'))),
+                    'phone' => "required|string",
+                    'is_default' => "nullable|boolean",
+                    'status' => 'nullable|in:' . join(',', iconfig('status.addresses', iconfig('status.global'))),
                 ]);
                 break;
         }
         return $rules;
+    }
+    public function additionalUpdate($request = null, $additional = null, $parent = null)
+    {
+        if ($request->get('cities')) {
+            $cities = $request->get('cities');
+            $this->city_id = end($cities);
+        }
+        parent::additionalUpdate($request, $additional, $parent);
     }
 }

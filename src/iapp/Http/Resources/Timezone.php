@@ -16,7 +16,7 @@ class Timezone extends Resource
     public function toArray($request)
     {
         $data = parent::toArray($request);
-        $continentModel = imodal('LocationCountry');
+        $continentModel = imodal('Country');
         $country = $continentModel::findByISOAlpha2($this->country);
         $data['country'] = $country? [
             'text' => $country->title,

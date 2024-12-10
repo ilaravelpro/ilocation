@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTimeZonesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -25,7 +25,7 @@ class CreateTimeZonesTable extends Migration
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
             $table->string('title');
-            $table->string('country', 20);
+            $table->string('country', 20)->nullable();
             $table->string('gmt_offset', 6);
             $table->string('dst_offset', 6);
             $table->string('raw_offset', 6);
@@ -43,4 +43,4 @@ class CreateTimeZonesTable extends Migration
     {
         Schema::dropIfExists('timezones');
     }
-}
+};

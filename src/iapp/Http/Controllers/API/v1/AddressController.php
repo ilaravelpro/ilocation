@@ -1,18 +1,20 @@
 <?php
 
 
-
 /**
  * Author: Amir Hossein Jahani | iAmir.net
- * Last modified: 9/19/20, 8:18 PM
+ * Last modified: 9/19/20, 8:32 PM
  * Copyright (c) 2020. Powered by iamir.net
  */
 
-namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\LocationCity;
+namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1;
+
+use iLaravel\Core\iApp\Http\Controllers\API\ApiController;
 
 
-trait Filters
+class AddressController extends ApiController
 {
+    public $order_list = ['id', 'title', 'summary', 'content', 'geoname', 'status'] ;
     public function filters($request, $model, $parent = null, $operators = [])
     {
         $filters = [
@@ -27,28 +29,18 @@ trait Filters
                 'type' => 'text'
             ],
             [
-                'name' => 'name',
-                'title' => _t('name'),
+                'name' => 'text',
+                'title' => _t('text'),
                 'type' => 'text'
             ],
             [
-                'name' => 'prefix',
-                'title' => _t('prefix'),
+                'name' => 'description',
+                'title' => _t('description'),
                 'type' => 'text'
             ],
             [
-                'name' => 'code',
-                'title' => _t('code'),
-                'type' => 'text'
-            ],
-            [
-                'name' => 'country',
-                'title' => _t('country'),
-                'type' => 'text'
-            ],
-            [
-                'name' => 'type',
-                'title' => _t('type'),
+                'name' => 'zip',
+                'title' => _t('zip'),
                 'type' => 'text'
             ],
             [
@@ -62,15 +54,10 @@ trait Filters
                 'type' => 'text'
             ],
             [
-                'name' => 'geoname',
-                'title' => _t('geoname'),
+                'name' => 'creator_id',
+                'title' => _t('creator'),
                 'type' => 'text'
-            ],
-            [
-                'name' => 'parent',
-                'title' => _t('parent'),
-                'type' => 'text'
-            ],
+            ]
         ];
         return [$filters, [], $operators];
     }

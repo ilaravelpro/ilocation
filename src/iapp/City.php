@@ -10,7 +10,7 @@
 namespace iLaravel\iLocation\iApp;
 use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
-class LocationCity extends \iLaravel\Core\iApp\Model
+class City extends \iLaravel\Core\iApp\Model
 {
     public static $s_prefix = 'ILCCC';
     public static $s_start = 1155;
@@ -27,7 +27,7 @@ class LocationCity extends \iLaravel\Core\iApp\Model
 
     public function country()
     {
-        return $this->belongsTo(imodal('LocationCountry'), 'country', 'iso_alpha2');
+        return $this->belongsTo(imodal('Country'), 'country', 'iso_alpha2');
     }
 
     public function timezone()
@@ -37,17 +37,28 @@ class LocationCity extends \iLaravel\Core\iApp\Model
 
     public function parent()
     {
-        return $this->belongsTo(imodal('LocationCity'), 'parent_id');
+        return $this->belongsTo(imodal('City'), 'parent_id');
     }
 
     public function cities()
     {
-        return $this->hasMany(imodal('LocationCity'), 'parent_id');
+        return $this->hasMany(imodal('City'), 'parent_id');
     }
 
     public function lines()
     {
-        return $this->hasMany(imodal('LocationLine'), 'city_id');
+        return $this->hasMany(imodal('Line'), 'city_id');
+    }
+
+    public function getTypeTextAttribute()
+    {
+        $type = itype($this->type);
+        return $type ? $type->title : $this->type;
+    }
+
+    public function getTextTitleAttribute()
+    {
+        return  $this->parent ? implode('->',[$this->parent->text_title , $this->title]) : $this->title;
     }
 
     public function rules(Request $request, $action, $parent = null)
@@ -57,9 +68,9 @@ class LocationCity extends \iLaravel\Core\iApp\Model
             case 'store':
             case 'update':
                 $rules = array_merge($rules, [
-                    'parent_id' => "nullable|exists:location_cities,id",
+                    'parent_id' => "nullable|exists:cities,id",
                     'timezone_id' => "nullable|exists:timezones,id",
-                    'country' => "nullable|exists:location_countries,iso_alpha2",
+                    'country' => "nullable|exists:countries,iso_alpha2",
                     'title' => "required|string",
                     'name' => "nullable|string",
                     'prefix' => "nullable|string",
@@ -71,7 +82,7 @@ class LocationCity extends \iLaravel\Core\iApp\Model
                     'coordinates.*.lon' => "nullable|longitude",
                     'coordinates.*.lat' => "nullable|latitude",
                     'geoname' => "nullable|string",
-                    'status' => 'nullable|in:' . join(',', iconfig('status.location_cities', iconfig('status.global'))),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.cities', iconfig('status.global'))),
                 ]);
                 break;
         }

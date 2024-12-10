@@ -11,7 +11,7 @@ namespace iLaravel\iLocation\iApp;
 
 use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
-class LocationCountry extends \iLaravel\Core\iApp\Model
+class Country extends \iLaravel\Core\iApp\Model
 {
     public static $s_prefix = 'ILCC';
     public static $s_start = 1155;
@@ -28,7 +28,7 @@ class LocationCountry extends \iLaravel\Core\iApp\Model
 
     public function cities()
     {
-        return $this->hasMany(imodal('LocationCity'), 'country_id')->where('master', 1);
+        return $this->hasMany(imodal('City'), 'country', 'iso_alpha2')->whereNull('parent_id');
     }
 
     public function rules(Request $request, $action, $parent = null)
@@ -40,7 +40,7 @@ class LocationCountry extends \iLaravel\Core\iApp\Model
                 $rules = array_merge($rules, [
                     'title' => "required|string",
                     'name' => "nullable|string",
-                    'continent' => "nullable|exists:location_continents,code",
+                    'continent' => "nullable|exists:continents,code",
                     'capital' => "nullable|string",
                     'area' => "nullable|string",
                     'population' => "nullable|string",
@@ -58,7 +58,7 @@ class LocationCountry extends \iLaravel\Core\iApp\Model
                     'coordinates.*.lon' => "nullable|longitude",
                     'coordinates.*.lat' => "nullable|latitude",
                     'geoname' => "nullable|string",
-                    'status' => 'nullable|in:' . join(',', iconfig('status.location_countries', iconfig('status.global'))),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.countries', iconfig('status.global'))),
                 ]);
                 break;
         }

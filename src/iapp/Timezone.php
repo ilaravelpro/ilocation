@@ -19,7 +19,7 @@ class Timezone extends \iLaravel\Core\iApp\Model
     protected $guarded = [];
     public function country()
     {
-        return $this->belongsTo(imodal('LocationCountry'), 'country', 'iso_alpha2');
+        return $this->belongsTo(imodal('Country'), 'country', 'iso_alpha2');
     }
 
     public function rules(Request $request, $action, $parent = null)
@@ -29,8 +29,8 @@ class Timezone extends \iLaravel\Core\iApp\Model
             case 'store':
             case 'update':
                 $rules = array_merge($rules, [
-                    'title' => "required|regex:/^[A-Za-z\/]*$/",
-                    'country' => "nullable|exists:location_countries,iso_alpha2",
+                    'title' => "required|string",
+                    'country' => "nullable|exists:countries,iso_alpha2",
                     'gmt_offset' => "required|double:0,3",
                     'dst_offset' => "required|double:0,3",
                     'raw_offset' => "required|double:0,3",

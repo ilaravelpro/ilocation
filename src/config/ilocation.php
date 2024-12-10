@@ -11,12 +11,10 @@ return [
     'routes' => [
         'api' => [
             'status' => true,
-            'locations' => ['status' => true],
             'continents' => ['status' => true],
             'countries' => ['status' => true],
             'cities' => ['status' => true],
-            'lines' => ['status' => true],
-            'ips' => ['status' => true],
+            'addresses' => ['status' => true],
             'timezones' => ['status' => true],
         ]
     ],

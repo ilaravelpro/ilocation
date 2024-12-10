@@ -1,18 +1,21 @@
 <?php
 
 
-
 /**
  * Author: Amir Hossein Jahani | iAmir.net
- * Last modified: 9/19/20, 8:18 PM
+ * Last modified: 9/19/20, 8:32 PM
  * Copyright (c) 2020. Powered by iamir.net
  */
 
-namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1\LocationCountry;
+namespace iLaravel\iLocation\iApp\Http\Controllers\API\v1;
+
+use iLaravel\Core\iApp\Http\Controllers\API\ApiController;
 
 
-trait Filters
+class CountryController extends ApiController
 {
+    public $order_list = ['id', 'continent', 'capital', 'area', 'population', 'tld', 'phone', 'languages', 'neighbors', 'currency_code', 'currency_name', 'postal_code_format', 'postal_code_regex', 'iso_alpha2', 'iso_alpha3', 'iso_numeric', 'fips', 'fips_equivalent', 'geoname', 'status'];
+
     public function filters($request, $model, $parent = null, $operators = [])
     {
         $filters = [

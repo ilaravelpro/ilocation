@@ -11,7 +11,7 @@ namespace iLaravel\iLocation\iApp;
 
 use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
-class LocationContinent extends \iLaravel\Core\iApp\Model
+class Continent extends \iLaravel\Core\iApp\Model
 {
     public static $s_prefix = 'ILC';
     public static $s_start = 0;
@@ -30,11 +30,11 @@ class LocationContinent extends \iLaravel\Core\iApp\Model
                 $rules = array_merge($rules, [
                     'title' => "required|string",
                     'name' => "nullable|string",
-                    'code' => "nullable|regex:/^[A-Za-z]{1,3}$/",
+                    'code' => "nullable|regex:/^[A-Za-z]{1,4}$/",
                     'coordinates.*.lon' => "nullable|longitude",
                     'coordinates.*.lat' => "nullable|latitude",
                     'geoname' => "nullable|string",
-                    'status' => 'nullable|in:' . join(',', iconfig('status.location_continents', iconfig('status.global'))),
+                    'status' => 'nullable|in:' . join(',', iconfig('status.continents', iconfig('status.global'))),
                 ]);
                 break;
         }

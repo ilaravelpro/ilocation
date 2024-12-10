@@ -11,7 +11,7 @@ namespace iLaravel\iLocation\iApp\Http\Resources;
 
 use iLaravel\Core\iApp\Http\Resources\Resource;
 
-class LocationCity extends Resource
+class City extends Resource
 {
     public function toArray($request)
     {
@@ -29,7 +29,7 @@ class LocationCity extends Resource
                 'value' => $this->timezone->serial,
             ];
         }
-        $countryModel = imodal('LocationCountry');
+        $countryModel = imodal('Country');
         $country = $countryModel::findByISOAlpha2($this->country);
         $data['country'] = $country? [
             'text' => $country->title,

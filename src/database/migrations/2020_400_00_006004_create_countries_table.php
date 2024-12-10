@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationCountriesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -20,7 +20,7 @@ class CreateLocationCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('location_countries', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('creator_id')->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
@@ -58,6 +58,6 @@ class CreateLocationCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_countries');
+        Schema::dropIfExists('countries');
     }
-}
+};
