@@ -13,7 +13,8 @@ use iLaravel\Core\iApp\Http\Requests\iLaravel as Request;
 
 class Address extends \iLaravel\Core\iApp\Model
 {
-    use useLocationCity;
+    use Traits\City;
+
     public static $s_prefix = 'ILL';
     public static $s_start = 1155;
     public static $s_end = 18446744073709551615;
@@ -23,6 +24,7 @@ class Address extends \iLaravel\Core\iApp\Model
     {
         return $this->belongsTo(imodal('User'), 'creator_id');
     }
+
     public function rules(Request $request, $action, $parent = null)
     {
         $rules = [];
