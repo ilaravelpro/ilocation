@@ -5,7 +5,7 @@
  * Copyright (c) 2021. Powered by iamir.net
  */
 
-namespace iLaravel\iLocation\iAp\Traits;
+namespace iLaravel\iLocation\iApp\Traits;
 trait SaveAddress
 {
 
