@@ -33,15 +33,16 @@ class Address extends \iLaravel\Core\iApp\Model
             case 'update':
                 $rules = array_merge($rules, [
                     'city_id' => "nullable|exists:cities,id",
+                    'cities.*' => "nullable|exists:cities,id",
                     'title' => "required|string",
                     'text' => "required|string",
-                    'postcode' => "required|string",
-                    'longitude' => "required|longitude",
-                    'latitude' => "required|latitude",
-                    'description' => "required|string",
-                    'phone' => "required|string",
+                    'postcode' => "nullable|string",
+                    'longitude' => "nullable|longitude",
+                    'latitude' => "nullable|latitude",
+                    'description' => "nullable|string",
+                    'phone' => "nullable|string",
                     'is_default' => "nullable|boolean",
-                    'status' => 'nullable|in:' . join(',', iconfig('status.addresses', iconfig('status.global'))),
+                    'status' => 'nullable|in:' . join(',', $this->_statuses()),
                 ]);
                 break;
         }
