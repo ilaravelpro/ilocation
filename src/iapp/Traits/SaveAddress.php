@@ -8,7 +8,6 @@
 namespace iLaravel\iLocation\iApp\Traits;
 trait SaveAddress
 {
-
     public function saveAddress($data, $name = "address") {
         $address = [];
         if (!empty($data["cities"])) {
@@ -16,8 +15,10 @@ trait SaveAddress
             $address['city_id'] = imodal('City')::id(end($cities));
         }
         $address['title'] = empty($data["title"]) ? $this->title : $data["title"];
-        foreach (["text", "postcode", "longitude", "latitude"] as $index)
+        foreach (["text", "postcode"] as $index)
             $address[$index] = empty($data[$index]) ? null : $data[$index];
+        foreach (["longitude", "latitude"] as $index)
+            $address[$index] = empty($data[$index]) ? null : (doubleval($data[$index])?:null);
         $this->$name()->updateOrCreate(['title' => $address['title']], $address);
         return tap($this->$name ?: $this->$name()->create())->update($address);
     }
